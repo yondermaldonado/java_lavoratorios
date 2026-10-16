@@ -6,7 +6,7 @@ public class MiPrimeraFicha {
         boolean activo = true;
         char inicial = 'A';
 
-        System.out.print("Estudiante: ");
+        System.out.print("Estudiante: " + nombre);
         System.out.println(nombre);
         System.out.println("Edad: " + edad);
         System.out.println("Temperatura: " + temperatura);

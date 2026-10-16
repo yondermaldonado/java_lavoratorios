@@ -11,7 +11,7 @@ public class LosDatosCambian {
         System.out.println("Curso: " + CURSO);
         System.out.println("Ciudad: " + ciudad);
         System.out.println("Intentos iniciales: " + intentos);
-        System.out.println("Valor" + valor);
+        System.out.println("Valor: " + valor);
         System.out.println("¿Es Activo? ::: " + isActive);
 
         // Coloca un breakpoint aquí: aún verás intentos con valor 1.

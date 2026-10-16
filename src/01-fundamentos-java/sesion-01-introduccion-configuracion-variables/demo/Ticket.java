@@ -14,5 +14,6 @@ public class Ticket {
         System.out.println("Subtotal: " + subtotal);
         System.out.println("IVA: " + impuesto);
         System.out.println("Total: " + total);
+
     }
 }

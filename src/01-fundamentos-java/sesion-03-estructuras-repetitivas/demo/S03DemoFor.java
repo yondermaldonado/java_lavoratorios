@@ -4,7 +4,6 @@ public class S03DemoFor {
         int detenerEn = 7;
         int suma = 0;
         int procesados = 0;
-
         for (int numero = 1; numero <= limite; numero++) {
             if (numero == detenerEn) {
                 break;

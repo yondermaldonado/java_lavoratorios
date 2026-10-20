@@ -1,6 +1,6 @@
 public class S02Lab05MotorPromociones {
     public static void main(String[] args) {
-        long subtotalCentavos = 18_500;
+        long subtotalCentavos = 18500;
         int cantidad = 4;
         boolean esMiembro = true;
         String tipoEntrega = "EXPRESS";
@@ -13,7 +13,7 @@ public class S02Lab05MotorPromociones {
         // Total: 16650 + 1200 = 17850
 
         // TODO 2: Validar subtotal entre 0 y 1000000 inclusive y cantidad mayor que cero.
-        boolean datosValidos = subtotalCentavos >= 0 && subtotalCentavos <= 1_000_000 && cantidad > 0;
+        boolean datosValidos = subtotalCentavos >= 0 && subtotalCentavos <= 1000000 && cantidad > 0;
 
         if (!datosValidos) {
             System.out.println("Pedido invalido: subtotal o cantidad fuera de rango");
@@ -39,9 +39,9 @@ public class S02Lab05MotorPromociones {
             } else {
                 // TODO 4: Elegir 10%, 5% o 0% con if/else if/else según las reglas del README.
                 int porcentajeDescuento;
-                if (esMiembro && subtotalCentavos >= 10_000) {
+                if (esMiembro && subtotalCentavos >= 10000) {
                     porcentajeDescuento = 10;
-                } else if (!esMiembro && subtotalCentavos >= 20_000) {
+                } else if (!esMiembro && subtotalCentavos >= 20000) {
                     porcentajeDescuento = 5;
                 } else {
                     porcentajeDescuento = 0;
@@ -52,7 +52,7 @@ public class S02Lab05MotorPromociones {
                 long netoCentavos = subtotalCentavos - descuentoCentavos;
 
                 // TODO 6: Envío gratis solo para ESTANDAR cuando el neto alcanza 25000 centavos.
-                if (tipoEntrega.equals("ESTANDAR") && netoCentavos >= 25_000) {
+                if (tipoEntrega.equals("ESTANDAR") && netoCentavos >= 25000) {
                     envioCentavos = 0;
                 }
                 long totalCentavos = netoCentavos + envioCentavos;

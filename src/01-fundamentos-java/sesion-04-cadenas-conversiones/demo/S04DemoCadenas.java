@@ -6,7 +6,7 @@ public class S04DemoCadenas {
         String limpio = original.strip();
         System.out.println("Limpio: [" + limpio + "]");
         System.out.println("Longitud: " + limpio.length());
-        if (!limpio.isBlank()) {
+        if (limpio.isBlank()) {
             System.out.println("Primer caracter: " + limpio.charAt(0));
         }
         String frase = "El lenguaje Java";

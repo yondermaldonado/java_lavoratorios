@@ -1,3 +1,4 @@
+
 public class Lab04DiagnosticaYCorrige {
     public static void main(String[] args) {
         // En tu copia personal, activa un caso por vez, lee el error y repáralo.

@@ -13,7 +13,7 @@ public class S06Pedido {
 
     public boolean enviar() {
         // TODO 4: Enviar solo un pedido PENDIENTE; cambiar a ENVIADO y devolver si acepta.
-        if (this.estado == "PENDIENTE"){
+        if (this.estado.equals("PENDIENTE")){
             this.estado = "ENVIADO";
             return true;
         }else{
@@ -24,7 +24,7 @@ public class S06Pedido {
 
     public boolean cancelar() {
         // TODO 5: Cancelar solo un pedido PENDIENTE; cambiar a CANCELADO y devolver si acepta.
-        if (this.estado == "PENDIENTE"){
+        if (this.estado.equals("PENDIENTE")){
             this.estado = "CANCELADO";
             return true;
         }else{

@@ -16,7 +16,7 @@ public class S05LibroPrestamo {
 
     public boolean prestar() {
         // TODO 4: Rechazar un segundo prestamo; si esta disponible, prestarlo.
-        if (this.prestado == true) {
+        if (this.prestado) {
             return false;
         } else {
             this.prestado = true;

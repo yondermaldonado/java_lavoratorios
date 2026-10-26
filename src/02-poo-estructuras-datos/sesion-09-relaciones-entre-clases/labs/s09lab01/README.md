@@ -44,3 +44,46 @@ Entrega este diagrama y sus respuestas en una sección del README personal o del
 **Pista para las multiplicidades:** ¿Cuántos clientes puede tener un consultor a la vez? ¿Cuántos consultores pueden apuntar al mismo cliente? No confundas el número de objetos de este Main con el límite permitido por el modelo.
 
 **Variación conceptual:** Una política nueva exige que todo consultor nazca con un cliente y nunca pueda quedar sin asignación. ¿Qué cambiaría en la multiplicidad?
+
+# Lab 01 · Consultor y cliente
+
+Autor: Yonder Maldonado Pabón
+
+## Investigación común inicial
+
+- **Asociación:** relación entre dos clases en la que un objeto conoce a otro y lo usa, sin que uno sea parte del otro. Cada uno existe por su cuenta.
+- **Agregación:** relación todo–parte débil. El todo agrupa partes que ya existían y que pueden compartirse o seguir vivas fuera del todo. El rombo vacío va en el extremo del todo.
+- **Composición:** relación todo–parte fuerte. Las partes pertenecen a un solo todo, se crean dentro de él y no se comparten ni se transfieren. El rombo lleno va en el extremo del todo.
+
+
+## Diagrama UML
+
+```mermaid
+classDiagram
+    class Consultor {
+        -nombre: String
+        -cliente: Cliente
+        +asignarCliente(cliente: Cliente) boolean
+        +liberarAsignacion() void
+        +resumen() String
+    }
+    class Cliente {
+        -nombre: String
+        +getNombre() String
+    }
+    Consultor "0..*" --> "0..1" Cliente : cliente
+```
+
+## Clasificación
+
+**Asociación.** Navegabilidad de `Consultor` hacia `Cliente`.
+
+## Justificaciones
+
+1. **¿Existe un todo–parte significativo?** No. El enunciado dice que el cliente no es una pieza del consultor.
+2. **¿Puede compartirse la misma instancia?** Sí. `ana` y `luis` apuntan al mismo objeto `tienda`.
+3. **Evidencia:** `Consultor` guarda un campo `Cliente` que recibe por parámetro. `liberarAsignacion()` solo pone `cliente = null` y `Cliente` no tiene referencia de vuelta.
+
+## Variación conceptual
+
+Si todo consultor debe nacer con cliente, la multiplicidad del lado `Cliente` pasa de `0..1` a `1`.

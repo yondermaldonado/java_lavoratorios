@@ -42,3 +42,44 @@ Entrega este diagrama y sus respuestas en una sección del README personal o del
 **Pista para las multiplicidades:** ¿Puede existir una orden sin pasos? ¿Cuántas órdenes admiten simultáneamente la misma instancia de Paso según el contrato? Diferencia el estado completado del paso y el vínculo entre clases.
 
 **Variación conceptual:** Se introduce un catálogo de tareas reutilizables que varias órdenes pueden consultar. ¿Conviene reutilizar el mismo Paso con su estado completado o separar la descripción de tarea del paso de cada orden? Explica en una frase.
+
+
+# Lab 05 · Orden de trabajo y pasos
+
+Autor: Yonder Maldonado Pabón
+
+## Diagrama UML
+
+```mermaid
+classDiagram
+    class OrdenTrabajo {
+        -codigo: String
+        -pasos: List~Paso~
+        +agregarPaso(descripcion: String) boolean
+        +completarPaso(indice: int) boolean
+        +pendientes() int
+        +resumen() String
+    }
+    class Paso {
+        -descripcion: String
+        -completado: boolean
+        ~completar() boolean
+        ~estaCompletado() boolean
+        ~resumen() String
+    }
+    OrdenTrabajo "1" *-- "0..*" Paso : pasos
+```
+
+## Clasificación
+
+**Composición.** El rombo lleno va en `OrdenTrabajo` (el todo). Navegabilidad de `OrdenTrabajo` hacia `Paso`.
+
+## Justificaciones
+
+1. **¿Existe un todo–parte significativo?** Sí. La orden contiene sus propios pasos y cada uno corresponde solo a esa orden.
+2. **¿Puede compartirse la misma instancia?** No. Un `Paso` pertenece a una sola orden y no se transfiere.
+3. **Evidencia:** `agregarPaso` recibe un `String` y hace `new Paso(...)` dentro de la orden. No hay método para insertar un `Paso` externo ni para obtenerlo, y `Paso` es de paquete. Completar el índice 0 de OT-01 no cambia OT-02. Una orden puede existir sin pasos, por eso `0..*`.
+
+## Variación conceptual
+
+Conviene separar la descripción de la tarea (catálogo reutilizable) del paso de cada orden, porque el estado `completado` es propio de cada orden y compartir el mismo `Paso` lo completaría en todas.

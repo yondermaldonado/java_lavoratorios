@@ -42,3 +42,40 @@ Entrega este diagrama y sus respuestas en una sección del README personal o del
 **Pista para las multiplicidades:** Distingue la clase Pregunta de cada instancia creada dentro del modelo. Para las entradas de estos cuestionarios, ¿cuántos cuestionarios pueden utilizar simultáneamente la misma instancia? ¿Está permitido un cuestionario vacío?
 
 **Variación conceptual:** Ahora existe un banco externo de preguntas reutilizables y los cuestionarios reciben esas referencias. ¿Qué decisión de propiedad o relación habría que reconsiderar?
+
+# Lab 03 · Cuestionario y preguntas
+
+Autor: Yonder Maldonado Pabón
+
+## Diagrama UML
+
+```mermaid
+classDiagram
+    class Cuestionario {
+        -titulo: String
+        -preguntas: List~Pregunta~
+        +agregarPregunta(texto: String) boolean
+        +cantidad() int
+        +vaciar() void
+        +resumen() String
+    }
+    class Pregunta {
+        -texto: String
+        ~getTexto() String
+    }
+    Cuestionario "1" *-- "0..*" Pregunta : preguntas
+```
+
+## Clasificación
+
+**Composición.** El rombo lleno va en `Cuestionario` (el todo). Navegabilidad de `Cuestionario` hacia `Pregunta`.
+
+## Justificaciones
+
+1. **¿Existe un todo–parte significativo?** Sí. Las preguntas son entradas propias de cada cuestionario.
+2. **¿Puede compartirse la misma instancia?** No. Cada `Pregunta` pertenece a un solo cuestionario y no se transfiere.
+3. **Evidencia:** `agregarPregunta` recibe un `String` y crea la `Pregunta` con `new` dentro del cuestionario. `Pregunta` es de paquete y nadie recibe la lista ni sus objetos. Al vaciar Java, Git queda intacto. Un cuestionario vacío es válido, por eso `0..*`.
+
+## Variación conceptual
+
+Con un banco externo de preguntas reutilizables habría que reconsiderar quién es el dueño de la `Pregunta`; pasaría de composición a agregación o asociación, porque varios cuestionarios compartirían la misma instancia.

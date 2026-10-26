@@ -41,3 +41,41 @@ Entrega este diagrama y sus respuestas en una sección del README personal o del
 **Pista para las multiplicidades:** ¿Cuántas fotografías permite cada álbum? ¿Cuántos álbumes pueden utilizar una misma fotografía? ¿Quién conserva una referencia en el código, Album o Fotografia?
 
 **Variación conceptual:** El sistema cambia a imágenes internas de una ficha que no pueden reutilizarse ni obtenerse desde fuera y se crean al recibir sus datos. ¿Qué tendrías que revisar para clasificarlas?
+
+
+# Lab 04 · Álbum y fotografías
+
+Autor: Yonder Maldonado Pabón
+
+## Diagrama UML
+
+```mermaid
+classDiagram
+    class Album {
+        -nombre: String
+        -fotografias: List~Fotografia~
+        +agregar(fotografia: Fotografia) boolean
+        +vaciar() void
+        +cantidad() int
+        +resumen() String
+    }
+    class Fotografia {
+        -titulo: String
+        +getTitulo() String
+    }
+    Album "0..*" o-- "0..*" Fotografia : fotografias
+```
+
+## Clasificación
+
+**Agregación.** El rombo va en `Album` (el todo). Navegabilidad de `Album` hacia `Fotografia`.
+
+## Justificaciones
+
+1. **¿Existe un todo–parte significativo?** Sí. El álbum agrupa fotografías, pero no es su dueño.
+2. **¿Puede compartirse la misma instancia?** Sí. `playa` está en `vacaciones` y en `favoritas`.
+3. **Evidencia:** las fotos se crean en el Main antes que los álbumes y `agregar` recibe la referencia existente. `vaciar()` solo limpia la lista: Favoritas conserva Playa y `playa.getTitulo()` sigue funcionando. `Album` no limita la cantidad y solo evita repetir la misma foto dentro de un mismo álbum.
+
+## Variación conceptual
+
+Habría que revisar si el objeto se crea dentro de la ficha, si alguna referencia puede salir de ella y si su vida depende de la ficha; si las tres se cumplen, sería composición.

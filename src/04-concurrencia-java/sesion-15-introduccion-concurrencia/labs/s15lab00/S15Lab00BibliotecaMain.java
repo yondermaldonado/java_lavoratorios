@@ -3,7 +3,9 @@ package s15lab00;
 public class S15Lab00BibliotecaMain {
     public static void main(String[] args) throws InterruptedException {
         TareaBiblioteca directa = new TareaBiblioteca("Consulta directa");
-        directa.run();
+        Thread consulta = new Thread(directa, "consulta");
+        consulta.start();
+        consulta.join();
 
         Thread prestamo = new Thread(
                 new TareaBiblioteca("Validar datos del prestamo"), "prestamos");

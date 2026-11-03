@@ -31,3 +31,16 @@ Con el cambio a 1, las tres líneas del bloque Executor deben mencionar el mismo
 **No se exige copiar el orden de esta salida.** Comprueba cada certificado y los nombres de los trabajadores, no tiempos exactos ni cuál tarea termina primero.
 
 [Ver la comparación explicada](../../demo/s15demo02/README.md)
+
+=== Thread: un hilo nuevo por tarea ===
+Luis atendido por manual-2
+Sara atendido por manual-3
+Ana atendido por manual-1
+=== Executor: pool de 2 hilos ===
+Ana atendido por pool-1-thread-1
+Luis atendido por pool-1-thread-2
+Sara atendido por pool-1-thread-2
+Fin: todas las tareas terminaron
+
+
+No se pierde ningún certificado.

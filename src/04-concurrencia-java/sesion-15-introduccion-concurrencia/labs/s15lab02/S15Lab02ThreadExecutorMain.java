@@ -41,7 +41,7 @@ public class S15Lab02ThreadExecutorMain {
 
     private static void ejecutarConExecutor(String[] nombres)
             throws InterruptedException, ExecutionException {
-        ExecutorService executor = Executors.newFixedThreadPool(2);
+        ExecutorService executor = Executors.newFixedThreadPool(1);
         List<Future<?>> pendientes = new ArrayList<>();
         try {
             for (String nombre : nombres) {

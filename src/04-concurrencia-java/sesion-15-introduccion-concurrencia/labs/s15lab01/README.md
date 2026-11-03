@@ -26,3 +26,23 @@ El inicio usa una señal CountDownLatch ya preparada; no forma parte de lo que d
 COMPLETADA/CANCELADA son resultados de la consulta; no son valores de Thread.State. No se consulta ese resultado desde main hasta después de join.
 
 [Volver a la sesión](../../README.md)
+
+sin cambio:
+Consulta-A: COMPLETADA
+Vivo tras join: false
+Consulta-B: CANCELADA
+Vivo tras join: false
+Fin: consultas de citas terminadas.
+
+con cambio: Consulta-A: COMPLETADA
+Vivo tras join: false
+Consulta-B: COMPLETADA
+Vivo tras join: false
+Fin: consultas de citas terminadas 
+
+cambia a cancelada y completada
+
+linea cancelacion: hilo.interrupt();
+
+linea espera: hilo.join();
+

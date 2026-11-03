@@ -32,3 +32,8 @@ Las dos líneas de los trabajadores pueden intercambiarse. No necesitas repetir 
 Después verás cómo se conserva la tarea Runnable y se cambia la administración de hilos en el [Demo 02](../../demo/s15demo02/README.md).
 
 [Volver a la sesión](../../README.md)
+
+Consulta directa atendido por main
+Validar datos del prestamo atendido por prestamos
+Preparar borrador de aviso atendido por avisos
+Fin: tareas de biblioteca terminadas

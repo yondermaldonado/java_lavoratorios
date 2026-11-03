@@ -22,3 +22,49 @@ Seguro y ecologico: 10000
 ```
 
 [Volver a la sesión](../../README.md) · [Abrir el programa](S13Lab02DecoratorMain.java)
+
+Paso 1 – Cálculo en papel (valores originales)
+
+Línea	Cálculo	Total
+Base	5000	5000
+Ecologico	5000 + 2000	7000
+Seguro	5000 + 3000	8000
+Ecologico y seguro	5000 + 2000 + 3000	10000
+Seguro y ecologico	5000 + 3000 + 2000	10000
+
+Paso 2 – Salida del Main original
+
+text
+Base: 5000
+Ecologico: 7000
+Seguro: 8000
+Ecologico y seguro: 10000
+Seguro y ecologico: 10000
+
+Las dos combinaciones dan lo mismo porque la suma es conmutativa.
+
+Paso 3 – Lectura de las clases
+
+Empaque es el contrato (calcularCosto()).
+EmpaqueEstandar es el componente base y devuelve 5000.
+DecoradorEmpaque es la clase abstracta que guarda el objeto envuelto en protected final Empaque empaque.
+EmpaqueEcologico y SeguroEmpaque llaman a empaque.calcularCosto() y le suman su recargo con Math.addExact.
+
+Paso 4 – Debug
+Con Step Into en SeguroEmpaque.calcularCosto ves cómo la llamada baja capa por capa: Seguro → Ecologico → Estandar. Luego el valor sube sumando 5000, después 2000 (o 2500) y por último 3000.
+
+Paso 5 – Salida con el recargo en 2_500
+
+text
+Base: 5000
+Ecologico: 7500
+Seguro: 8000
+Ecologico y seguro: 10500
+Seguro y ecologico: 10500
+
+Paso 6 – Preguntas conceptuales
+Intercambiar recargos fijos no cambia el total porque cada decorador solo suma una constante y la suma no depende del orden (5000 + 2500 + 3000 = 5000 + 3000 + 2500).
+
+El orden sí afecta al mensaje de auditoría porque cada decorador envuelve al anterior: el más externo se ejecuta primero y el más interno al final, así que el mensaje saldría en secuencias distintas (“ecológico y luego seguro” frente a “seguro y luego ecológico”). Ese mensaje de auditoría no aparece en el código que me enviaste: el Main solo imprime costos, así que esa parte te la explico en teoría.
+
+Si siempre hubiera una única opción fija, no necesitarías decoradores: bastaría una clase concreta con el costo ya calculado. El Decorator tiene sentido cuando las opciones se combinan libremente y en cualquier orden.

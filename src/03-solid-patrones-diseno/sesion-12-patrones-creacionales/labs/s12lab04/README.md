@@ -28,3 +28,12 @@ Total desde B: 3
 ```
 
 Guarda dos comprobaciones cortas con entrada, esperado y obtenido, y responde la pregunta conceptual. No debes construir otro patrón ni dibujar un UML completo en este tiempo. Completa lo pendiente para la siguiente clase según indique el docente.
+Paso 1 – Predicción
+primera y segunda son dos referencias al mismo objeto. El constructor es privado, así que nadie puede hacer new ContadorMetricas() desde fuera. La única instancia es INSTANCIA (static final), y obtenerInstancia() siempre devuelve esa.
+
+Paso 3 – Cómo recibe el contador ProcesoLaboratorio
+Lo recibe por constructor (inyección de dependencias). No llama a obtenerInstancia() ni crea un contador propio, y rechaza null con IllegalArgumentException. El Main es quien decide qué contador le entrega. Por eso la clase se puede probar con cualquier ContadorMetricas y no queda acoplada al global.
+
+Paso 5 – Pregunta conceptual
+El estado global dificulta las pruebas porque el total se arrastra entre pruebas dentro de la misma JVM y los resultados dependen del orden de ejecución. Preferiría un contador normal entregado por ejecución cuando necesite pruebas aisladas, varias instancias independientes o concurrencia, porque cada prueba empieza en 0 sin necesidad de un reset.
+

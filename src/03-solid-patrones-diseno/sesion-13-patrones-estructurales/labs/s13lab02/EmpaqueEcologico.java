@@ -7,6 +7,6 @@ public class EmpaqueEcologico extends DecoradorEmpaque {
 
     @Override
     public long calcularCosto() {
-        return Math.addExact(empaque.calcularCosto(), 2_000);
+        return Math.addExact(empaque.calcularCosto(), 2_500);
     }
 }

@@ -31,3 +31,7 @@ Personal (3): [Sentadillas=15] [Flexiones=8] [Plancha=1]
 ```
 
 Guarda dos comprobaciones cortas con entrada, esperado y obtenido, y responde la pregunta conceptual. No debes construir otro patrón ni dibujar un UML completo en este tiempo. Completa lo pendiente para la siguiente clase según indique el docente.
+
+paso1: base y personal son dos referencias a objetos distintos. Cambiar las repeticiones de personal no altera la plantilla, porque copiar crea una lista nueva y también un Ejercicio nuevo por cada elemento.
+Con new ArrayList<>(ejercicios) se obtiene una lista nueva, pero con las mismas referencias a los objetos Ejercicio. Es una copia superficial (shallow copy). Las dos listas apuntarían a los mismos objetos en memoria, así que personal.cambiarRepeticiones(0, 15) también modificaría Sentadillas en base. En el breakpoint del ciclo se ve que cada ejercicio.copiar() genera un objeto nuevo, y eso evita el problema.
+

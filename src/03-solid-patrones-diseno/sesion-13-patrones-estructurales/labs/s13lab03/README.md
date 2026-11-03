@@ -21,3 +21,53 @@ Ciclo rechazado
 ```
 
 [Volver a la sesión](../../README.md) · [Abrir el programa](S13Lab03CompositeMain.java)
+
+Paso 1 – Predicción
+
+Elemento	Cálculo	Total
+Módulo vacío	sin elementos	0
+introduccion	10 + 20	30
+ruta	introduccion (30) + lección de 15	45
+
+Paso 2 – Salida del Main original
+
+text
+Modulo vacio: 0
+Introduccion: 30
+Ruta: 45
+Ciclo rechazado
+
+El intento de añadir ruta dentro de introduccion se rechaza porque ruta ya contiene a introduccion, y eso formaría un ciclo.
+
+Paso 3 – Hoja y compuesto
+
+Leccion es la hoja: calcularMinutos() devuelve directamente sus minutos.
+ModuloFormativo es el compuesto: calcularMinutos() recorre su lista y suma el calcularMinutos() de cada elemento, sea lección u otro módulo.
+Las dos clases implementan ElementoFormativo, y por eso el cliente las trata igual.
+
+Paso 4 – Salida con la lección de 5 minutos
+
+text
+Modulo vacio: 0
+Introduccion: 35
+Ruta: 50
+Ciclo rechazado
+
+introduccion pasa a 35 (10 + 20 + 5) y ruta a 50 (35 + 15). El módulo vacío sigue en 0 porque se imprime antes de agregar lecciones.
+
+Paso 5 – Debug
+Con Step Into, ruta.calcularMinutos() entra al for y llama primero a introduccion.calcularMinutos(), que suma sus hojas (10, 20, 5) y devuelve 35. Luego ruta llama a la lección de 15 y suma: 35 + 15 = 50.
+
+Paso 6 – Árbol, recursión y lista plana
+
+text
+ruta (50)
+├── introduccion (35)
+│   ├── Leccion 10
+│   ├── Leccion 20
+│   └── Leccion 5
+└── Leccion 15
+
+Si se permitiera el ciclo (introduccion contiene a ruta y ruta a introduccion), calcularMinutos() se llamaría a sí mismo sin parar: la recursión nunca llegaría a una hoja y terminaría en StackOverflowError. Por eso agregarElementoFormativo revisa el ciclo antes de insertar.
+
+Bastaría una lista plana sin Composite cuando no hay grupos anidados: si todo son lecciones sueltas, sumar una lista de Leccion es suficiente. El Composite aporta valor cuando hay módulos dentro de módulos y se quiere tratar igual a una hoja y a un grupo.

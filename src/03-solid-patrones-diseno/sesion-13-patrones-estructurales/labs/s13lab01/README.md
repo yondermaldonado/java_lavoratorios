@@ -23,3 +23,48 @@ Prestamos=0 recibos=0 disponible=true
 ```
 
 [Volver a la sesión](../../README.md) · [Abrir el programa](S13Lab01FacadeMain.java)
+
+Paso 1 – Cómo funciona ejecutar
+Cada llamada crea una biblioteca nueva con un solo ejemplar. Los argumentos son disponible, vigente.
+
+Paso 2 – Predicción y salida del Main original
+
+Caso	Predicción
+(true, true)	Préstamo registrado, 1 préstamo y 1 recibo, ejemplar ya no disponible
+(false, true)	Ejemplar no disponible, sin préstamos ni recibos
+(true, false)	Membresía vencida, sin préstamos ni recibos, ejemplar sigue disponible
+text
+Prestamo registrado
+Prestamos=1 recibos=1 disponible=false
+Ejemplar no disponible
+Prestamos=0 recibos=0 disponible=false
+Membresia vencida o ausente
+Prestamos=0 recibos=0 disponible=true
+
+Paso 3 – Quién hace cada tarea en prestar
+
+Membresia verifica que la membresía esté vigente.
+Catalogo reserva el ejemplar con reservar().
+RegistroPrestamos registra el préstamo.
+EmisorRecibo emite el recibo.
+PrestamoFacade solo coordina el orden: primero valida, luego reserva y al final registra y emite.
+
+Paso 4 – Debug
+En los dos casos rechazados, prestar termina con return antes de llegar a registro.registrar() y recibos.emitir(). Por eso los contadores quedan en 0. Fíjate en que disponible=true en el tercer caso significa que el ejemplar no se reservó, porque la membresía se valida primero.
+
+Paso 5 – Salida con ejecutar(true, true) en la tercera llamada
+
+text
+Prestamo registrado
+Prestamos=1 recibos=1 disponible=false
+Ejemplar no disponible
+Prestamos=0 recibos=0 disponible=false
+Prestamo registrado
+Prestamos=1 recibos=1 disponible=false
+
+Las últimas dos líneas pasan a Prestamo registrado y Prestamos=1 recibos=1 disponible=false, como pide el README.
+
+Paso 6 – Preguntas conceptuales
+La fachada coordina servicios y no guarda sus contadores porque cada clase tiene una sola responsabilidad: RegistroPrestamos cuenta préstamos, EmisorRecibo cuenta recibos y Catalogo maneja la disponibilidad. La fachada solo ofrece una interfaz simple, prestar, y oculta el orden y las reglas entre los subsistemas. Si el cliente tuviera que llamar a cada clase, repetiría esa lógica en todos los sitios.
+
+Si el préstamo requiriera una única operación sencilla, la fachada no aportaría valor: sería una clase que solo delega una llamada, y el cliente podría usar el servicio directamente.

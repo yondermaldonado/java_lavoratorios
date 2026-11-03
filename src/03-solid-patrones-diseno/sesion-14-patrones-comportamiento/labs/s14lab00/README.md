@@ -21,3 +21,43 @@ Mayorista 10: 9000
 ```
 
 [Abrir el programa](S14Lab00StrategyMain.java) · [Volver a la sesión](../../README.md)
+
+Paso 1 – Cálculo en papel (precio unitario 1000)
+
+Salida	Subtotal	Descuento	Total
+regular10	10000	0	10000
+fidelizado10	10000	5 % = 500	9500
+mayorista9	9000	0 (menos de 10 unidades)	9000
+mayorista10	10000	10 % = 1000	9000
+
+Paso 2 – Salida del Main original
+
+text
+Regular 10: 10000
+Fidelizado 10: 9500
+Mayorista 9: 9000
+Mayorista 10: 9000
+
+Los dos totales de 9000 son iguales por casualidad: con 9 unidades no hay descuento, y con 10 unidades se descuenta el 10 %.
+
+Paso 3 – Dónde está la estrategia
+Carrito.total llama a descuento.calcular(precioUnitario, unidades) y no tiene ningún if sobre el tipo de cliente. Descuento es la interfaz de la estrategia y Regular, Fidelizado y Mayorista son las estrategias concretas.
+
+Paso 4 y 5 – Salida con Fidelizado
+
+text
+Regular 10: 10000
+Fidelizado 10: 9500
+Fidelizado 9: 8550
+Fidelizado 10: 9500
+9 unidades: 9000 − 5 % (450) = 8550.
+10 unidades: 10000 − 5 % (500) = 9500.
+
+Las dos últimas líneas coinciden con lo que pide el README. Solo cambié la estrategia que se pasa al constructor.
+
+Paso 6 – Breakpoint y pregunta conceptual
+Con Step Into en total, entras primero a validar y luego a Fidelizado.calcular, que devuelve el descuento. Después total calcula precioUnitario * unidades - descuento.
+
+Quien seleccionó la regla fue el cliente del carrito, el Main, al elegir qué objeto Descuento pasar al constructor (new Fidelizado()). El Carrito no decide nada: solo delega.
+
+Bastaría un cálculo directo, sin Strategy, si hubiera una única regla fija que no va a cambiar. Con una sola fórmula, la interfaz y las clases extra serían complejidad innecesaria. Strategy compensa cuando hay varias reglas intercambiables o se esperan más.

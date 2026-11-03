@@ -21,3 +21,39 @@ Duracion negativa rechazada
 ```
 
 [Volver a la sesión](../../README.md) · [Abrir el programa](S13Lab00AdapterMain.java)
+
+Paso 1 – Predicción
+
+Segundos	Minutos esperados
+0	           0.0
+2700	       45.0
+5400	       90.0
+
+Paso 2 – Salida del Main original
+
+0 s = 0.0 min
+2700 s = 45.0 min
+5400 s = 90.0 min
+Duracion negativa rechazada
+
+Paso 3 – Los tres roles
+
+DuracionCita: el contrato que espera la aplicación (target), con consultarMinutos().
+BibliotecaSegundos: el proveedor existente (adaptee), que entrega segundos y no se modifica.
+AdaptadorDuracion: el que traduce. Implementa DuracionCita, recibe la biblioteca por constructor y convierte obtenerSegundos() / 60.0.
+
+Paso 4 – Predicción y salida con {0, 2700, 5400, 61}
+
+0 s = 0.0 min
+2700 s = 45.0 min
+5400 s = 90.0 min
+61 s = 1.0166666666666666 min
+Duracion negativa rechazada
+
+Paso 5 – Debug y la división entre enteros
+En el breakpoint de consultarMinutos, obtenerSegundos() vale 61 y la división se hace entre int y double (60.0). Eso promueve el entero a double y conserva los decimales.
+
+Si se dividieran dos enteros (61 / 60), Java haría división entera y daría 1: se perdería la parte fraccionaria (los 1.0166 minutos), y duraciones menores de 60 s, como 30 s, darían 0 minutos.
+
+Paso 6 – Pregunta conceptual
+Sin el adaptador, cada cliente tendría que depender de BibliotecaSegundos y hacer la conversión de segundos a minutos por su cuenta, repitiendo esa lógica en cada sitio. Si la biblioteca ya devolviera minutos con la misma firma que DuracionCita, el adaptador no sería necesario, porque los contratos ya serían compatibles.

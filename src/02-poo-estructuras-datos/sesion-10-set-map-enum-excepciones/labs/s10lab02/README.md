@@ -37,14 +37,3 @@ BAJA 121 min: vencida=true
 ```
 
 Guarda la respuesta breve y las dos comprobaciones en tu README personal o el del equipo indicado. Completa lo pendiente para la siguiente clase y entrega por Campus según indique el docente.
-
-los valores son baja es 120
-media 60
-alta 15
-
-registrar alta minutos 15 y vencida false porque no pasa el limite
-registrar alta minutos 16 y vencida true porque pasa el limite
-registrar media minutos 45 y vencida false porque no pasa el limite
-registrar baja minutos 121 y vencida true porque pasa el limite
-si se registran negativos retorna false
-registrar baja minutos 121 y vencida true porque pasa el limite

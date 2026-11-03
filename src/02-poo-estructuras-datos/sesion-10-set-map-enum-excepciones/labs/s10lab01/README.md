@@ -31,9 +31,3 @@ Total conservado: 6
 ```
 
 Guarda la respuesta breve y las dos comprobaciones en tu README personal o el del equipo indicado. Completa lo pendiente para la siguiente clase y entrega por Campus según indique el docente.
-
-van a ser a = 3, b = 2, c = 1
-el containskey busca si existe la key el put revisa la key y remplaza el valor 
-total = 6
-false
-6

@@ -32,7 +32,3 @@ Disponibles: 3
 ```
 
 Guarda la respuesta breve y las dos comprobaciones en tu README personal o el del equipo indicado. Completa lo pendiente para la siguiente clase y entrega por Campus según indique el docente.
-
-va a requerir cartulina ,pegamento, tijeras
-despues se dispone cartilina y regla(anque no se requiera)
-va a falar pegamento y tijeras

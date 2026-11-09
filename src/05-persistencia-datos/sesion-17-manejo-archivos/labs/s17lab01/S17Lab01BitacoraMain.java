@@ -10,9 +10,20 @@ import java.nio.file.StandardOpenOption;
 public class S17Lab01BitacoraMain {
     public static boolean registrar(Path archivo) throws IOException {
         Files.createDirectories(archivo.getParent());
-        // TODO 1: Abrir BufferedWriter UTF-8 con CREATE y APPEND, en try-with-resources.
-        // TODO 2: Escribir las dos tareas indicadas, cada una seguida de newLine().
-        return false; // Sustituir por true solo despues del cierre correcto.
+
+        // TODO 1 y TODO 2
+        try (BufferedWriter escritor = Files.newBufferedWriter(
+                archivo,
+                StandardCharsets.UTF_8,
+                StandardOpenOption.CREATE,
+                StandardOpenOption.APPEND)) {
+
+            escritor.write("Revisión eléctrica");
+            escritor.newLine();
+            escritor.write("Limpieza de área común");
+            escritor.newLine();
+        }
+        return true; // después de cerrar el try-with-resources
     }
 
     public static void main(String[] args) throws IOException {

@@ -13,12 +13,14 @@ public class S17Lab00BibliotecaMain {
         }
         Path carpeta = base.resolve(seccion);
         // TODO 1: Crear carpeta y padres mediante Files.createDirectories(carpeta).
+        Files.createDirectories(carpeta);
         Path archivo = carpeta.resolve("inventario.txt");
         try {
             if (Files.isDirectory(archivo)) {
                 throw new FileAlreadyExistsException(archivo.toString());
             }
             // TODO 2: Crear archivo sin reemplazar uno existente mediante Files.createFile.
+            Files.createFile(archivo);
         } catch (FileAlreadyExistsException error) {
             if (!Files.isRegularFile(archivo)) {
                 throw new IOException("La ruta del inventario no es archivo: " + archivo, error);

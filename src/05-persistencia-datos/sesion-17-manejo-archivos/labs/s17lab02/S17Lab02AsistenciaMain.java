@@ -21,14 +21,30 @@ public class S17Lab02AsistenciaMain {
             String linea;
             while ((linea = lector.readLine()) != null) {
                 numero++;
-                if (linea.isBlank()) {
+                // TODO 1 (antes del try)
+                if (numero == 1 && linea.equals("estudiante;fecha;estado")) {
                     continue;
                 }
-                // TODO 1: Ignorar solo el encabezado exacto de la linea 1 y separar con split(";", -1).
+                String[] campos = linea.split(";", -1);
+
                 try {
-                    // TODO 2: Validar tres campos no vacios, LocalDate.parse y Estado.valueOf.
-                    // TODO 3: Incrementar validos tras validar; incrementar invalidos en el catch.
+                    // TODO 2
+                    if (campos.length != 3) {
+                        throw new IllegalArgumentException("La fila debe tener exactamente 3 campos");
+                    }
+                    for (String campo : campos) {
+                        if (campo.isBlank()) {
+                            throw new IllegalArgumentException("Hay un campo vacío");
+                        }
+                    }
+                    String estudiante = campos[0];
+                    LocalDate fecha = LocalDate.parse(campos[1].strip());
+                    Estado estado = Estado.valueOf(campos[2].strip());
+
+                    // TODO 3
+                    validos++;
                 } catch (DateTimeParseException | IllegalArgumentException error) {
+                    invalidos++; // TODO 3
                     System.out.println("Linea " + numero + ": " + error.getMessage());
                 }
             }

@@ -2,7 +2,7 @@ package s18demo01;
 
 import java.sql.SQLException;
 
-public class UsuarioController {
+public class  UsuarioController {
     private final VistaConsola vista;
     private final UsuarioDAO dao;
 

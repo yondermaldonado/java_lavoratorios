@@ -14,9 +14,7 @@ public class S18Lab00BibliotecaMain {
 
     public static void main(String[] args) {
         try {
-/*            String url = System.getenv("DB_URL");
-            String usuario = System.getenv("DB_USER");
-            String clave = System.getenv("DB_PASSWORD");*/
+
             if (URL == null || URL.isBlank() || DB_USER == null || DB_USER.isBlank() || DB_PASSWORD == null) {
                 throw new IllegalArgumentException("Configura DB_URL, DB_USER y DB_PASSWORD en IntelliJ.");
             }
